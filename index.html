@@ -1,0 +1,107 @@
+
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en" xmlns:fb="http://ogp.me/ns/fb#" >
+    <head>        
+    <title></title>
+<meta name="og:type" content="product" >
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" >
+<meta name="Classification" content="Internet" >
+<meta name="Author" content="p" >
+<meta name="Contact" content="" >
+<meta name="Publisher" content="" >
+<meta http-equiv="Expires" content="15" >
+<meta name="Robots" content="ALL" >
+<meta name="Robots" content="INDEX, FOLLOW" >
+<meta name="GOOGLEBOT" content="ARCHIVE" >
+<meta name="Revisit-After" content="15 Days" >
+<meta name="Distribution" content="Global" >
+<meta name="Rating" content="General" >
+<meta property="fb:app_id" content="" >
+<meta property="og:locale" content="en_GB" >
+<meta property="og:site_name" content="" >
+<meta property="og:type" content="article" >
+<meta property="og:url" content="" >
+<meta property="og:image" content="" >
+<meta property="og:description" content="" >
+<meta property="og:title" content="" >
+<meta name="Description" content="" >
+<link href="/" rel="canonical" >
+<link href="https://plus.google.com" rel="publisher" >
+<link href="/apple-touch-icon-144x144-precomposed.png" rel="apple-touch-icon--144x144-precomposed" >
+<link href="/apple-touch-icon-144x144.png" rel="apple-touch-icon-144x144" >
+<link href="/apple-touch-icon-72x72-precomposed.png" rel="apple-touch-icon-72x72-precomposed" >
+<link href="/apple-touch-icon-72x72.png" rel="apple-touch-icon-72x72" >
+<link href="/apple-touch-icon-precomposed.png" rel="apple-touch-icon-precomposed" >
+<link href="/apple-touch-icon.png" rel="apple-touch-icon" >
+
+<style type="text/css">
+    body, html {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: arial;
+    font-size: 14px;
+}
+#map_canvas {
+    width: 100%;
+    height: 100%;
+}
+
+a {
+    color: #EC008C;
+}
+</style>
+<script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
+<script type="text/javascript" src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.8.15/jquery-ui.js"></script>
+    </head>
+    <body>
+	<script type="text/javascript">
+    var map;
+    var latlng = new google.maps.LatLng(50.346, -0.206413);
+
+    function createInfoWindowContent() {
+      return [
+	    "<strongA Marker</strong>",
+	    "<a target=\"_top\" href=\"#\">Link</a>"
+	].join('<br>');
+    }
+    
+    function createMarker(latLon, title, content, map, image) {
+	var marker = new google.maps.Marker({
+	    position: latLon,
+	    map: map,
+	    icon: image
+	});
+	
+	marker.setTitle(title);
+	
+	if (content != false) {
+	    var infowindow = new google.maps.InfoWindow({ 
+		content: content,
+		size: new google.maps.Size(50,50)
+	    });
+
+	    google.maps.event.addListener(marker, 'click', function () {
+		infowindow.open(map, marker);
+	    });
+	}
+    }
+
+    function initialize() {
+	var mapOptions = {
+	    zoom: 16,
+	    center: gym,
+	    mapTypeId: google.maps.MapTypeId.ROADMAP
+	};
+
+	map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+	
+	createMarker(latlng, 'Marker here', createInfoWindowContent(), map, '/images/marker_map.png');
+	    }
+
+    google.maps.event.addDomListener(window, 'load', initialize);
+</script>
+<div id="map_canvas"></div>    </body>
+</html>
